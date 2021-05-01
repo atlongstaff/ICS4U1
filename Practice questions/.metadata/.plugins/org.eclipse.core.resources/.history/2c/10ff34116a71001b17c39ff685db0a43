@@ -1,0 +1,174 @@
+/**This program was completed as an ICS4U lab
+ 	*@author Alex Longstaff
+ 	*@Version 2021-02-17
+*/
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+public class LongstaffA2Darrays {
+	public static String[][] glblarray  = new String[6][4];;
+	public static Scanner Inscanner = new Scanner(System.in); 	
+	
+	
+	static void Enterinfo() {
+		for (int row = 0; row < glblarray.length; row++){
+			for (int column = 0; column < glblarray[row].length; column++){
+		        System.out.println("filling out info for student: " + (row + 1));
+
+				if(column == 0) {
+					while(glblarray[row][column] == null) {
+						
+						System.out.println("Input student number");
+						String Numinput = Inscanner.nextLine();
+		
+						try { int Intinput = Integer.parseInt(Numinput);}catch(Exception e) {System.out.println("An error occured. Make sure you are only inputing integers"); }
+
+							
+						if(Numinput.length() == 10){ 
+							glblarray[row][column] =  Numinput;
+						
+						}else{System.out.println("Student number not 10 digits long");}
+					}
+				}else if(column == 1) {
+					while(glblarray[row][column] == null) {
+
+						System.out.println("Input students first name");
+			    	
+						String Nameinput = Inscanner.nextLine();
+						glblarray[row][column] =  Nameinput;
+
+					}
+				}else if(column == 2) {
+					while(glblarray[row][column] == null) {
+
+						System.out.println("Input students last name");
+						String Nameinput = Inscanner.nextLine();
+						glblarray[row][column] =  Nameinput;
+
+					}
+				}else if(column == 3) {
+					while(glblarray[row][column] == null) {
+
+						System.out.println("Input students grade");
+						String Gradeinput = Inscanner.nextLine();
+					
+						try {
+							int Intinput = Integer.parseInt(Gradeinput);
+							
+							if(Intinput >= 0 && Intinput <= 100){ 
+								glblarray[row][column] =  Gradeinput;
+						
+							}else{System.out.println("Grade not within range");}
+						}catch(Exception e) {System.out.println("An error occured. Make sure you are only inputing integers"); }
+					}
+				}
+	
+				
+		   }
+		}
+	}
+	
+	static void Resizearray() {
+        System.out.println("please enter the number of students in your class: ");
+        int numstudents = Inscanner.nextInt();
+		glblarray = new String[numstudents][4];	
+		
+        System.out.println("please enter the information for your new class size: ");
+		Enterinfo();
+	}
+	
+	static void Displayinfo() {
+		for (int i = 0; i < glblarray.length; i++){
+			for (int j = 0; j < glblarray[i].length; j++){
+				System.out.print(glblarray[i][j] + "|");		
+		   }
+			System.out.println();		
+		}
+	}	
+		
+	static void Displaymax() {
+		int max = 0;
+		for (int i = 0; i < glblarray.length; i++){
+			for (int j = 0; j < glblarray[i].length; j++) {
+				if (j == glblarray[i].length -1) {
+					int mark = Integer.parseInt(glblarray[i][j]);
+					if(max <= mark) {max = mark;}					
+				}	
+		   }
+		}
+		System.out.printf("the highest mark is: %d", max );	
+		System.out.println();	
+
+	}	
+	
+	static void Displaymin() {
+		int min = 100;
+		for (int i = 0; i < glblarray.length; i++) {
+			for (int j = 0; j < glblarray[i].length; j++) {
+				if (j == glblarray[i].length -1) {
+					int mark = Integer.parseInt(glblarray[i][j]);
+					if(mark <= min) {min = mark;}					
+				}	
+		   }
+		}
+		System.out.printf("the lowest mark is: %d", min);	
+		System.out.println();	
+	}	
+	
+	static void Displayaverage() {
+		int sum = 0;
+		for (int i = 0; i < glblarray.length; i++){
+			for (int j = 0; j < glblarray[i].length; j++) {
+				if (j == glblarray[i].length -1) {
+					sum += Integer.parseInt(glblarray[i][j]);
+				}	
+		   }
+		}
+		System.out.printf("the average mark is: %d", sum / glblarray.length);	
+		System.out.println();	
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		//displays a menu so the user can know how to call each method
+		System.out.println("To Enter information, enter: 1"); 
+		System.out.println("To resize the array, enter: 2"); 
+		System.out.println("To display the array, enter: 3"); 
+		System.out.println("To display the highest grade, enter: 4"); 
+		System.out.println("To display the lowest grade, enter: 5"); 
+		System.out.println("Todisplay the class average grade, enter: 6"); 
+		
+		while(true) {
+			
+			//try { 			//late addition. Checks if input is valid
+			int minput = Inscanner.nextInt(); //checks for input
+			if(minput <= 6 && minput >= 1){ //determines if input is valid
+				
+				//determines which input the user selected, and activates the corresponding method
+
+				if (minput == 1) {
+					Enterinfo();
+				}
+				if(minput == 2) {
+					Resizearray();
+				}
+				if(minput == 3) {
+					Displayinfo();
+				}
+				if(minput == 4) {
+					Displaymax();
+				}
+				if(minput == 5) {
+					Displaymin();
+				}
+				if(minput == 6) {
+					Displayaverage();
+				}
+				
+			}else { System.out.println("An error occured. Make sure your input is an option");  }
+			//}catch(Exception e) {System.out.println("An error occured. Make sure you are only inputing integers"); }
+		}
+	}
+}

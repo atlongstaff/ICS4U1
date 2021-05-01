@@ -1,0 +1,216 @@
+/**This program was completed as an ICS4U lab
+ 	*@author Alex Longstaff
+ 	*@Version 2021-02-17
+*/
+import java.util.Scanner;
+public class LongstaffA2Darrays {
+	public static String[][] glblarray  = new String[6][4];;
+	public static Scanner Inscanner = new Scanner(System.in); 	
+	
+	/**allows user to enter strings into the global array
+ 	*@param glblarray global array
+ 	*@param user input to be added to the array
+	*@returns global array glblarray, confirmation, and prompts to data
+	*/
+	static void Enterinfo() {
+		for (int row = 0; row < glblarray.length; row++){//for loop to iterate through the rows(students)
+			for (int column = 0; column < glblarray[row].length; column++){//for loop to iterate through the columns
+		        System.out.println("filling out info for student: " + (row + 1)); //outputs the row so the user knows which substance to select
+		        if(column == 0) {		//if the column is 0 ie your inputing the student number		
+		        	
+					while(glblarray[row][column] == null  || glblarray[row][column] == "") {	//to make sure that there has actually been an input
+					
+						System.out.println("Input student number");
+						
+						//ERRORScanner is creating an empty input on first passthrough.***********************************
+						String Numinput = Inscanner.nextLine();
+
+						
+						//converts to integer in order to check if its valid
+						try {
+							Long.parseLong(Numinput);
+						
+						}catch(Exception e) {System.out.println("An error occured. Make sure you are only inputing integers"); }//check if its valid
+						
+
+						if(Numinput.length() == 10){ //checks to make sure the user input is 10 digits long
+							glblarray[row][column] =  Numinput;
+						}else{System.out.println("Student number not 10 digits long");}
+					}
+					
+					
+					
+					
+					
+				}else if(column == 1) { //if the column is 1 ie your inputing the students name
+					while(glblarray[row][column] == null  || glblarray[row][column] == "") {	//to make sure that there has actually been an input
+
+						System.out.println("Input students first name");
+																	//no error handling needed because there's no limits to what a name can be... Can be anylength, have symbols, even numbers....
+						String Nameinput = Inscanner.nextLine();
+						glblarray[row][column] =  Nameinput; 
+
+					}
+					
+					
+					
+				}else if(column == 2) { //if the column is 2 ie your inputing the students last name
+					while(glblarray[row][column] == null || glblarray[row][column] == "") {//to make sure that there has actually been an input
+
+						System.out.println("Input students last name");
+																	//no error handling needed because there's no limits to what a name can be... Can be anylength, have symbols, even numbers....
+						String Nameinput = Inscanner.nextLine();
+						glblarray[row][column] =  Nameinput;
+
+					}
+					
+					
+					
+				}else if(column == 3) {		//if the column is 3 ie your inputing the students grade
+					while(glblarray[row][column] == null || glblarray[row][column] == "") {//to make sure that there has actually been an input
+
+						System.out.println("Input students grade");
+						String Gradeinput = Inscanner.nextLine();
+					
+						try {
+							int Intinput = Integer.parseInt(Gradeinput); //converts string to integer
+							
+							if(Intinput >= 0 && Intinput <= 100){  		 //ensures integer is between 0 and 100
+								glblarray[row][column] =  Gradeinput;
+						
+							}else{System.out.println("Grade not within range");}
+						}catch(Exception e) {System.out.println("An error occured. Make sure you are only inputing integers"); } //an error will occur because a letter wont convert to int
+					}
+				}
+	
+				
+		   }
+		}
+	}
+	
+	/**allows user to change the number of rows in the global array, then calls for new information
+ 	*@param glblarray global array
+ 	*@param user input to change the size of the array
+	*@returns global array glblarray, prompt to enter information
+	*/
+	static void Resizearray() {
+        System.out.println("please enter the number of students in your class: "); //prompts info
+        int numstudents = Inscanner.nextInt();
+		glblarray = new String[numstudents][4];	//resets array size
+		
+        System.out.println("please enter the information for your new class size: ");
+		Enterinfo();		//calls for new info because array is now empty
+	}
+	
+	/**Prints the entire table in a simple way 
+ 	*@param glblarray global array
+	*@returns prints the global array glblarray to console in an organized way 
+	*/
+	static void Displayinfo() {
+		for (int i = 0; i < glblarray.length; i++){
+			for (int j = 0; j < glblarray[i].length; j++){
+				System.out.print(glblarray[i][j] + "|");		
+		   }
+			System.out.println();		
+		}
+	}	
+	
+	/**prints the maximum value of the last column of the array
+ 	*@param glblarray global array
+	*@returns the highest integer of the last column of the global array 
+	*/
+	static void Displaymax() {
+		int max = 0;
+		for (int i = 0; i < glblarray.length; i++){ //iterates through rows
+			for (int j = 0; j < glblarray[i].length; j++) {//iterates through columns
+				if (j == glblarray[i].length -1) { //checks if at last column
+					int mark = Integer.parseInt(glblarray[i][j]);
+					if(max <= mark) {max = mark;}//checks if the current mark is greater than the previous set mark					
+				}	
+		   }
+		}
+		System.out.println("the highest mark is: " + max );	
+	}	
+	
+	/**prints the minimum value of the last column of the array
+ 	*@param glblarray global array
+	*@returns prints the lowest integer of the last column of the global array 
+	*/
+	static void Displaymin() {
+		int min = 100;
+		for (int i = 0; i < glblarray.length; i++) {//iterates through rows
+			for (int j = 0; j < glblarray[i].length; j++) {//iterates through columns
+				if (j == glblarray[i].length -1) {//checks if at last column
+					int mark = Integer.parseInt(glblarray[i][j]);
+					if(mark <= min) {min = mark;}				//checks if the current mark is less than the previous set mark					
+				}		
+			}	
+		}
+		System.out.println("the lowest mark is:" + min);	
+	}	
+	
+	/**prints the average value of the last column of the array
+ 	*@param glblarray global array
+	*@returns prints the sum of the integers divided by the number of rows of the last column of the global array 
+	*/
+	static void Displayaverage() {
+		int sum = 0;
+		for (int i = 0; i < glblarray.length; i++){//iterates through a row
+			for (int j = 0; j < glblarray[i].length; j++) {//iterates through a column
+				if (j == glblarray[i].length -1) {
+					sum += Integer.parseInt(glblarray[i][j]); //adds the current mark to the sum
+				}	
+		   }
+		}
+		System.out.printf("the average mark is: %d", sum / glblarray.length);	
+		System.out.println();	
+	}
+	
+	
+	public static void main(String[] args) {
+		
+
+		
+		while(true) {
+			//displays a menu so the user can know how to call each method
+			System.out.println("To Enter information, enter: 1"); 
+			System.out.println("To resize the array, enter: 2"); 
+			System.out.println("To display the array, enter: 3"); 
+			System.out.println("To display the highest grade, enter: 4"); 
+			System.out.println("To display the lowest grade, enter: 5"); 
+			System.out.println("Todisplay the class average grade, enter: 6"); 
+			
+			try { 			//late addition. Checks if input is valid
+				String minput = Inscanner.nextLine(); //checks for input
+
+
+			if(Integer.parseInt(minput) <= 6 && Integer.parseInt(minput) >= 1){ //determines if input is valid
+				
+				//determines which input the user selected, and activates the corresponding method
+				int mintinput = Integer.parseInt(minput);
+				if (mintinput == 1) {
+					Enterinfo();
+				}
+				if(mintinput == 2) {
+					Resizearray();
+				}
+				if(mintinput == 3) {
+					Displayinfo();
+				}
+				if(mintinput == 4) {
+					Displaymax();
+				}
+				if(mintinput == 5) {
+					Displaymin();
+				}
+				if(mintinput == 6) {
+					Displayaverage();
+				}
+				
+			}else { System.out.println("An error occured. Make sure your input is an option");  }
+			
+			}catch(Exception e) {System.out.println("An error occured. Make sure you are only inputing integers"); }
+
+		}
+	}
+}

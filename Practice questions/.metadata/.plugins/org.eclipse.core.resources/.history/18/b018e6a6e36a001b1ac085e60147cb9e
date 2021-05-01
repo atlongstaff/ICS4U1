@@ -1,0 +1,13 @@
+
+public class Question2 {
+	public static void main(String[] args) {
+		 int[][] rating = new int[3][4]
+		for ( int i : rating[i]) {
+			System.out.println(rating[i]);
+
+		}
+
+
+
+
+}}

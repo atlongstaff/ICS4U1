@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="MineArray"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="minearray"/>
+			<item value="app"/>
+			<item value="sort"/>
+			<item value="Binary"/>
+			<item value="+ search"/>
+			<item value="catch"/>
+			<item value="Texterror"/>
+			<item value="&#x09;&#x09;&#x09;&#x09;System.out.println(&quot;StartLength&quot; + StartLength);"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+</section>

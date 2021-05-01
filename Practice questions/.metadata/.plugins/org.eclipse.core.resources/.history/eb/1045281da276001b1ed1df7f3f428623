@@ -1,0 +1,15 @@
+import java.util.Random;
+public class LongstaffASortingAssignment {
+	public static int glblarray[] = new int[200];
+	
+	
+	static void DisplayArray() {
+		for (int i = 0; i < glblarray.length; i++) {
+		    int randint = (int)(Math.random() * (100) + 1);
+			glblarray[i] = randint;//add it to the array
+			System.out.print(glblarray[i]);
+
+			break;
+		}
+	}
+}

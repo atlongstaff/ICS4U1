@@ -1,0 +1,14 @@
+
+public class LongstaffASortingAssignment {
+	public static int glblarray[] = new int[200];
+	
+	
+	static void DisplayArray() {
+		for (int i = 0; i < glblarray.length; i++) {
+			System.out.print(glblarray[i]);
+			int randint = Math.random() * (2) +1; //generate a random decimal
+			glblarray[i] = randint;//add it to the array
+			break;
+		}
+	}
+}
