@@ -92,9 +92,13 @@ public class LongstaffASort {
 					max = j;//creates new selection
 				}
 			}
+
+
 			int t = glblarray[max];//swaps with selection
 			glblarray[max] = glblarray[i];
 			glblarray[i] =t;
+		
+
 		}
 	}	
 		
